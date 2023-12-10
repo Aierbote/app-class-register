@@ -139,6 +139,12 @@ figure + p {
 	width: 13.75rem;
 }
 
+#about h4 > b {
+	text-decoration: underline;
+	text-decoration-color: var(--my-ternary-color);
+	color: var(--my-anti-primary-color);
+}
+
 .pfp {
 	width: 114px;
 	border-radius: 50%;

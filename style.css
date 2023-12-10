@@ -111,6 +111,11 @@ fieldset > div {
 	gap: 0px;
 }
 
+label > abbr {
+	color: red;
+	font-weight: 900;
+}
+
 /* FOOTERS */
 
 footer {

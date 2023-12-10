@@ -85,28 +85,34 @@
 						<legend>New Student</legend>
 
 						<div id="nameStudent">
-							<label for="studentName">Name</label>
+							<label for="studentName"
+								>Name <abbr title="⚠️Required">*</abbr></label
+							>
 							<input
 								type="text"
 								id="studentName"
 								name="studentName"
 								placeholder="Mario"
+								required
 							/>
 						</div>
 
 						<div id="surnameStudent">
-							<label for="studentSurname">Surame</label>
+							<label for="studentSurname"
+								>Surame <abbr title="⚠️Required">*</abbr></label
+							>
 							<input
 								type="text"
 								id="studentSurame"
 								name="studentSurname"
 								placeholder="Rossi"
+								required
 							/>
 						</div>
 
 						<div id="submitStudent">
 							<!-- TODO : -->
-							<input type="button" onclick="notImplemented()" value="Add" />
+							<input type="submit" onclick="notImplemented()" value="Add" />
 						</div>
 					</fieldset>
 				</form>

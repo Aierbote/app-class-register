@@ -6,6 +6,46 @@ body {
 	font-family: "Inter", sans-serif;
 }
 
+/* HEADER */
+
+nav {
+	background-color: #72b8da;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 6%;
+	justify-content: center;
+}
+
+nav > img#logoHome {
+	width: 5rem;
+	height: 5rem;
+	margin: 4px;
+}
+
+nav > ul {
+	width: 70%;
+	height: 100%;
+	margin: 0;
+	padding: 0 10px;
+}
+
+nav > ul {
+	display: flex;
+}
+
+nav > ul > li {
+	list-style: none;
+	width: 9rem;
+	height: 4em;
+	display: flex;
+	align-items: center;
+}
+
+nav a {
+	text-decoration: none;
+}
+
 /* FOOTERS */
 
 footer {

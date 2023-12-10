@@ -98,4 +98,55 @@ class ClassRegister {
   }
 }
 
-module.exports = ClassRegister;
+// module.exports = ClassRegister;
+
+const myRegistry = new ClassRegister();
+
+
+/* D.O.M. Manipulation */
+
+// variables of elements from <main>
+const studentForm = document.querySelector("#studentForm");
+const submitStudent = document.querySelector("#submitStudent");
+const listStudents = document.querySelector("#listStudents");
+
+function readStorageItem(item) {
+  console.log(JSON.parse(localStorage.getItem(item)));
+}
+
+/**
+ * function to save ad object inside localStorage with a key and the item which needs to be parse into a JSON string.
+ * @param {string} key
+ * @param {object} item
+ */
+function saveItemInStorage(key, item) {
+  if (typeof item === "object") {
+    localStorage.setItem(key, JSON.stringify(item));
+  } else {
+    console.error("the give item is not an object" + item);
+  }
+}
+
+
+
+
+// // need to parse object into a JSON string to enter in localStorage correctly
+// localStorage.setItem("myRegistry", JSON.stringify(myRegistry));
+
+
+// DEBUG :
+// readStorageItem("myRegistry");
+
+// to prevent default behaviour of forms
+studentForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  // NOTE :
+  // - added this,
+  // - the form `action="#"`
+  // TODO : create, verify this type of function. Use .submit() from DOM if necessary
+})
+
+console.log(listStudents);
+
+
+

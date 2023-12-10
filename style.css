@@ -82,6 +82,35 @@ main > h1 > em {
 	color: var(--my-primary-color);
 }
 
+form {
+	display: flex;
+	justify-content: center;
+}
+
+fieldset {
+	width: 420px;
+	padding: 0.9em 1em 1em;
+	border-color: var(--my-ternary-color);
+	border-radius: 0.6rem;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+fieldset > div {
+	background-color: aliceblue;
+	padding: 6px;
+	margin: 0.4em 0em 0.3em;
+	border-radius: 0.6rem;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0px;
+}
+
 /* FOOTERS */
 
 footer {

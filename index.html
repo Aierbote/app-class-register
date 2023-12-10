@@ -53,6 +53,7 @@
 						<a href="#about">👤 About</a>
 					</li>
 					<li>
+						<!-- TODO : -->
 						<a href="#" onclick="alert('Not yet implemented')">📮 Contact</a>
 					</li>
 				</ul>
@@ -64,6 +65,45 @@
 		<!-- main start -->
 		<main>
 			<h1>Welcome to <em>Class Register</em></h1>
+
+			<p>
+				This web app is meant to create a list of student,to add, read, update
+				and delete them. Additionally you could even modify their scores during
+				an exam.
+			</p>
+
+			<!-- section form start -->
+			<section id="inputStudent">
+				<form id="studentForm">
+					<fieldset>
+						<legend>New Student</legend>
+
+						<div id="nameStudent">
+							<label for="studentName">Name</label>
+							<input type="text" id="studentName" name="studentName" />
+						</div>
+
+						<div id="surnameStudent">
+							<label for="studentSurname">Surame</label>
+							<input type="text" id="studentSurame" name="studentSurname" />
+						</div>
+
+						<div id="submit">
+							<!-- TODO : -->
+							<input
+								type="button"
+								onclick="alert('Not yet implemented')"
+								value="Add"
+							/>
+						</div>
+					</fieldset>
+				</form>
+			</section>
+			<!-- section form end -->
+
+			<!-- section form start -->
+			<section id="listStudent"></section>
+			<!-- section form end -->
 		</main>
 		<!-- main end -->
 

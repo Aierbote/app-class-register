@@ -94,6 +94,25 @@ class ClassRegister {
       }
     }
   }
+
+  /* MUST HAVE TO PARSE INTO `JSON` so that `JSON.stringify(new ClassRegister)` works smoothly*/
+  toJSON() {
+    return {
+      // wrapping The Block inside parenthesis allows arrow-fuction to interpret this block as an `object litteral`
+      // without those `(` & `)` it execute that block as instructions
+      students: this.#students.map(stud_ => ({
+        // The Block
+        name: stud_.name,
+        surname: stud_.surname,
+        scores: stud_.scores.map(score_ => ({
+          // The Block
+          punteggio: score_.punteggio,
+          date: score_.date.toISOString()
+        }))
+
+      }))
+    };
+  }
 }
 
 // module.exports = ClassRegister;

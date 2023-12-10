@@ -127,7 +127,7 @@ let myRegistry = new ClassRegister();
 // variables of elements from <main>
 const studentForm = document.querySelector("#studentForm");
 const submitStudent = document.querySelector("#submitStudent");
-const listStudents = document.querySelector("#listStudents");
+const listStudentsUL = document.querySelector("#listStudents > ul");
 
 function readStorageItem(item) {
   console.log(JSON.parse(localStorage.getItem(item)));
@@ -156,7 +156,20 @@ function loadRegisterFromLocalStorage() {
     myRegistry = new ClassRegister();
     // adding one student at a time, because I don't have a method add-them-all .
     registryObj.students.forEach(stud_ => {
+      const newLI = document.createElement("li");
+      // e.g. with just index 0, length is `1` . SOO next elem will be inserted in human postion `1`
+      const lengthRegistry = myRegistry.length;
+
       myRegistry.addStudent(stud_.name, stud_.surname, stud_.scores);
+
+      newLI.innerHTML = `
+        <div class="regId">${lengthRegistry}</div>
+        <div class="regName">${stud_.name}</div>
+        <div class="regSurname">${stud_.surname}</div>
+        <div class="regScores">${stud_.scores}</div>
+      `
+
+      listStudentsUL.appendChild(newLI);
     });
 
     return myRegistry;
@@ -190,6 +203,20 @@ function callRegister() {
     console.error("--> inserted whitespace or empty string");
     alert("Caution: insert a valid name");
   }
+
+  const newLI = document.createElement("li");
+  // e.g. with just index 0, length is `1` . SOO next elem will be inserted in human postion `1`
+  const lengthRegistry = myRegistry.length;
+  newLI.innerHTML = `
+    <div class="regId">${lengthRegistry}</div>
+    <div class="regName">${studentName}</div>
+    <div class="regSurname">${studentSurname}</div>
+    <div class="regScores">...</div>
+  `
+
+  listStudentsUL.appendChild(newLI);
+
+
 
   // Resetting input fields
   document.querySelector("#studentName").value = "";

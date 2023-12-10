@@ -34,6 +34,8 @@ class ClassRegister {
    * @param {Array} scores
    */
   addStudent(name, surname, scores) {
+    // To prevent undefined `scores` if it's null
+    scores = scores || [];
 
     console.log(`new student {name: ${name}, surname: ${surname}, scores: ${JSON.stringify(scores)} } added to ClassRegister`);
     this.#length += 1;

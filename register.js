@@ -119,7 +119,7 @@ class ClassRegister {
 
 // module.exports = ClassRegister;
 
-const myRegistry = new ClassRegister();
+let myRegistry = new ClassRegister();
 
 
 /* D.O.M. Manipulation */
@@ -153,17 +153,17 @@ function loadRegisterFromLocalStorage() {
   if (storedRegistry) {
     const registryObj = JSON.parse(storedRegistry);
 
-    const myRegistry = new ClassRegister();
+    myRegistry = new ClassRegister();
     // adding one student at a time, because I don't have a method add-them-all .
     registryObj.students.forEach(stud_ => {
-      myRegistry.addStudent(...stud_);
+      myRegistry.addStudent(stud_.name, stud_.surname, stud_.scores);
     });
 
     return myRegistry;
   }
 
   // IN CASE: nothing to see inside localStorage :-(
-  return new ClassRegister();
+  myRegistry = new ClassRegister();
 }
 
 
@@ -219,9 +219,13 @@ studentForm.addEventListener("submit", (event) => {
 })
 
 
+// to allow to ""import the old `myRegistry` from the memory of `localStorage`""
+window.onload = () => {
+  const myRegistry = loadRegisterFromLocalStorage();
 
-// // TODO:
-// window.onload()
+  console.log("Onload and from LocalStorage");
+  console.log(myRegistry);
+}
 
 // // BEFORE FIXING event.preventDefault:
 // // submit with focus on a field of the form

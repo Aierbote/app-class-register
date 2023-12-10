@@ -149,19 +149,31 @@ function saveItemInStorage(key, item) {
 
 function callRegister() {
   // from input fields
-  const studentName = document.querySelector("#studentName");
-  const studentSurame = document.querySelector("#studentSurame");
+  let studentName = document.querySelector("#studentName").value;
+  let studentSurame = document.querySelector("#studentSurame").value;
   const tempScore = [];
 
-  myRegistry.addStudent(studentName, studentSurame, tempScore);
+  studentName = studentName.trim();
+  studentSurame = studentSurame.trim();
+  console.log("- name:" + studentName + " surname:" + studentSurame + " " + tempScore);
 
-  // DEBUG :
-  console.log("testing localStorage");
+  // triming whitespaces
+  if (studentName !== "") {
+    console.log(`-> adding new student to myRegistry`);
+    myRegistry.addStudent(studentName, studentSurame, tempScore);
 
-
-  saveItemInStorage("myRegistry", myRegistry);
-  readStorageItem("myRegistry");
+    // DEBUG :
+    console.log("testing localStorage - adding to key 'myRegistry' the content of variable `myRegistry`");
+    saveItemInStorage("myRegistry", myRegistry);
+    readStorageItem("myRegistry");
+  } else {
+    console.error("--> inserted whitespace or empty string");
+    alert("Caution: insert a valid name");
+  }
 }
+
+
+
 
 
 
@@ -187,7 +199,7 @@ studentForm.addEventListener("submit", (event) => {
 })
 
 
-// BEFORE FIXING event.preventDefault:
+// // BEFORE FIXING event.preventDefault:
 // // submit with focus on a field of the form
 // studentForm.addEventListener(click, (event) => {
 //   callRegister();
@@ -199,6 +211,3 @@ studentForm.addEventListener("submit", (event) => {
 // })
 
 console.log(listStudents);
-
-
-

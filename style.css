@@ -58,6 +58,30 @@ nav a {
 	color: var(--my-anti-primary-color);
 }
 
+/* MAIN */
+
+main {
+	margin: 1em 2em 5em;
+	padding: 1em 2em 5em;
+	border-radius: 2.25em;
+	/* width: 90%; */
+	height: 500px;
+
+	display: flex;
+	flex-direction: column;
+	background-color: var(--my-anti-primary-color);
+}
+
+main > h1 {
+	padding-left: 2em;
+}
+
+main > h1 > em {
+	text-decoration: underline;
+	text-decoration-color: var(--my-ternary-color);
+	color: var(--my-primary-color);
+}
+
 /* FOOTERS */
 
 footer {

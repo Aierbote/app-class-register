@@ -170,17 +170,17 @@ function loadRegisterFromLocalStorage() {
 function callRegister() {
   // from input fields
   let studentName = document.querySelector("#studentName").value;
-  let studentSurame = document.querySelector("#studentSurame").value;
+  let studentSurname = document.querySelector("#studentSurname").value;
   const tempScore = [];
 
   studentName = studentName.trim();
-  studentSurame = studentSurame.trim();
-  console.log("- name:" + studentName + " surname:" + studentSurame + " " + tempScore);
+  studentSurname = studentSurname.trim();
+  console.log("- name:" + studentName + " surname:" + studentSurname + " " + tempScore);
 
   // triming whitespaces
   if (studentName !== "") {
     console.log(`-> adding new student to myRegistry`);
-    myRegistry.addStudent(studentName, studentSurame, tempScore);
+    myRegistry.addStudent(studentName, studentSurname, tempScore);
 
     // DEBUG :
     console.log("testing localStorage - adding to key 'myRegistry' the content of variable `myRegistry`");
@@ -190,6 +190,11 @@ function callRegister() {
     console.error("--> inserted whitespace or empty string");
     alert("Caution: insert a valid name");
   }
+
+  // Resetting input fields
+  document.querySelector("#studentName").value = "";
+  document.querySelector("#studentSurname").value = "";
+
 }
 
 

@@ -116,6 +116,16 @@ label > abbr {
 	font-weight: 900;
 }
 
+#liTableHead {
+	font-weight: 700;
+}
+
+#listStudents > ul > li {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
 /* FOOTERS */
 
 footer {

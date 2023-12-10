@@ -146,6 +146,26 @@ function saveItemInStorage(key, item) {
   }
 }
 
+function loadRegisterFromLocalStorage() {
+  const keyLocalStorage = "myRegistry";
+  const storedRegistry = localStorage.getItem(keyLocalStorage);
+
+  if (storedRegistry) {
+    const registryObj = JSON.parse(storedRegistry);
+
+    const myRegistry = new ClassRegister();
+    // adding one student at a time, because I don't have a method add-them-all .
+    registryObj.students.forEach(stud_ => {
+      myRegistry.addStudent(...stud_);
+    });
+
+    return myRegistry;
+  }
+
+  // IN CASE: nothing to see inside localStorage :-(
+  return new ClassRegister();
+}
+
 
 function callRegister() {
   // from input fields
@@ -198,6 +218,10 @@ studentForm.addEventListener("submit", (event) => {
   callRegister();
 })
 
+
+
+// // TODO:
+// window.onload()
 
 // // BEFORE FIXING event.preventDefault:
 // // submit with focus on a field of the form

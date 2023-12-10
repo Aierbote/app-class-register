@@ -34,6 +34,7 @@ class ClassRegister {
    * @param {Array} scores
    */
   addStudent(name, surname, scores) {
+
     console.log(`new student {name: ${name}, surname: ${surname}, scores: ${JSON.stringify(scores)} } added to ClassRegister`);
     this.#length += 1;
     this.#students.push({ "name": name, "surname": surname, "scores": scores });
@@ -70,10 +71,7 @@ class ClassRegister {
 
 
   /**
-   * To update a student `name` + `surname` with `newName` + `newSurname`, this method loops inside instance of `ClassRegister`
-  *
-  * NOTE :
-  * - ~replace the previous student object with a new object with inside a **clean slate** `scores` array, BE WARNED !~
+   * To update a student `name` + `surname` with `newName` + `newSurname`, this method loops inside instance of `ClassRegister`:
    * - replace the previous student names (name and surname) with a new args passed as params !
    * @param {string} name
    * @param {string} surname
@@ -135,6 +133,13 @@ function callRegister() {
   const tempScore = [];
 
   myRegistry.addStudent(studentName, studentSurame, tempScore);
+
+  // DEBUG :
+  console.log("testing localStorage");
+
+
+  saveItemInStorage("myRegistry", myRegistry);
+  readStorageItem("myRegistry");
 }
 
 
@@ -160,6 +165,8 @@ studentForm.addEventListener("submit", (event) => {
   callRegister();
 })
 
+
+// BEFORE FIXING event.preventDefault:
 // // submit with focus on a field of the form
 // studentForm.addEventListener(click, (event) => {
 //   callRegister();

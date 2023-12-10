@@ -128,6 +128,15 @@ function saveItemInStorage(key, item) {
 }
 
 
+function callRegister() {
+  // from input fields
+  const studentName = document.querySelector("#studentName");
+  const studentSurame = document.querySelector("#studentSurame");
+  const tempScore = [];
+
+  myRegistry.addStudent(studentName, studentSurame, tempScore);
+}
+
 
 
 // // need to parse object into a JSON string to enter in localStorage correctly
@@ -135,6 +144,9 @@ function saveItemInStorage(key, item) {
 
 
 // DEBUG :
+
+console.log("\n\nINIZIO DOM\n\n");
+
 // readStorageItem("myRegistry");
 
 // to prevent default behaviour of forms
@@ -143,8 +155,20 @@ studentForm.addEventListener("submit", (event) => {
   // NOTE :
   // - added this,
   // - the form `action="#"`
-  // TODO : create, verify this type of function. Use .submit() from DOM if necessary
+  // TODO : create, verify this type of function.
+
+  callRegister();
 })
+
+// // submit with focus on a field of the form
+// studentForm.addEventListener(click, (event) => {
+//   callRegister();
+// })
+
+// // ""submit"" with click on input `type="button"` of the form
+// submitStudent.addEventListener(click, (event) => {
+//   callRegister();
+// })
 
 console.log(listStudents);
 

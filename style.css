@@ -11,6 +11,8 @@ body {
 	--my-ternary-color: #bbe4e9;
 	--my-other-color: #726464;
 	--my-anti-primary-color: white;
+	--my-tr-default-color: #f2f2f2;
+	--my-tr-odd-color: #dddddd;
 
 	background-color: var(--my-ternary-color);
 }
@@ -114,6 +116,22 @@ fieldset > div {
 label > abbr {
 	color: red;
 	font-weight: 900;
+}
+
+#liTableHead {
+	font-weight: 700;
+	background-color: var(--my-ternary-color) !important;
+}
+
+#listStudents > ul > li {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	background-color: var(--my-tr-default-color);
+}
+
+#listStudents > ul > li:nth-child(odd) {
+	background-color: var(--my-tr-odd-color);
 }
 
 /* FOOTERS */

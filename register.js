@@ -34,6 +34,9 @@ class ClassRegister {
    * @param {Array} scores
    */
   addStudent(name, surname, scores) {
+    // To prevent undefined `scores` if it's null
+    scores = scores || [];
+
     console.log(`new student {name: ${name}, surname: ${surname}, scores: ${JSON.stringify(scores)} } added to ClassRegister`);
     this.#length += 1;
     this.#students.push({ "name": name, "surname": surname, "scores": scores });
@@ -70,10 +73,7 @@ class ClassRegister {
 
 
   /**
-   * To update a student `name` + `surname` with `newName` + `newSurname`, this method loops inside instance of `ClassRegister`
-  *
-  * NOTE :
-  * - ~replace the previous student object with a new object with inside a **clean slate** `scores` array, BE WARNED !~
+   * To update a student `name` + `surname` with `newName` + `newSurname`, this method loops inside instance of `ClassRegister`:
    * - replace the previous student names (name and surname) with a new args passed as params !
    * @param {string} name
    * @param {string} surname
@@ -96,6 +96,178 @@ class ClassRegister {
       }
     }
   }
+
+  /* MUST HAVE TO PARSE INTO `JSON` so that `JSON.stringify(new ClassRegister)` works smoothly*/
+  toJSON() {
+    return {
+      // wrapping The Block inside parenthesis allows arrow-fuction to interpret this block as an `object litteral`
+      // without those `(` & `)` it execute that block as instructions
+      students: this.#students.map(stud_ => ({
+        // The Block
+        name: stud_.name,
+        surname: stud_.surname,
+        scores: stud_.scores.map(score_ => ({
+          // The Block
+          punteggio: score_.punteggio,
+          date: score_.date.toISOString()
+        }))
+
+      }))
+    };
+  }
 }
 
-module.exports = ClassRegister;
+// module.exports = ClassRegister;
+
+let myRegistry = new ClassRegister();
+
+
+/* D.O.M. Manipulation */
+
+// variables of elements from <main>
+const studentForm = document.querySelector("#studentForm");
+const submitStudent = document.querySelector("#submitStudent");
+const listStudentsUL = document.querySelector("#listStudents > ul");
+
+function readStorageItem(item) {
+  console.log(JSON.parse(localStorage.getItem(item)));
+}
+
+/**
+ * function to save ad object inside localStorage with a key and the item which needs to be parse into a JSON string.
+ * @param {string} key
+ * @param {object} item
+ */
+function saveItemInStorage(key, item) {
+  if (typeof item === "object") {
+    localStorage.setItem(key, JSON.stringify(item));
+  } else {
+    console.error("the give item is not an object" + item);
+  }
+}
+
+function loadRegisterFromLocalStorage() {
+  const keyLocalStorage = "myRegistry";
+  const storedRegistry = localStorage.getItem(keyLocalStorage);
+
+  if (storedRegistry) {
+    const registryObj = JSON.parse(storedRegistry);
+
+    myRegistry = new ClassRegister();
+    // adding one student at a time, because I don't have a method add-them-all .
+    registryObj.students.forEach(stud_ => {
+      const newLI = document.createElement("li");
+      // e.g. with just index 0, length is `1` . SOO next elem will be inserted in human postion `1`
+      const lengthRegistry = myRegistry.length;
+
+      myRegistry.addStudent(stud_.name, stud_.surname, stud_.scores);
+
+      newLI.innerHTML = `
+        <div class="regId">${lengthRegistry}</div>
+        <div class="regName">${stud_.name}</div>
+        <div class="regSurname">${stud_.surname}</div>
+        <div class="regScores">${stud_.scores}</div>
+      `
+
+      listStudentsUL.appendChild(newLI);
+    });
+
+    return myRegistry;
+  }
+
+  // IN CASE: nothing to see inside localStorage :-(
+  myRegistry = new ClassRegister();
+}
+
+
+function callRegister() {
+  // from input fields
+  let studentName = document.querySelector("#studentName").value;
+  let studentSurname = document.querySelector("#studentSurname").value;
+  const tempScore = [];
+
+  studentName = studentName.trim();
+  studentSurname = studentSurname.trim();
+  console.log("- name:" + studentName + " surname:" + studentSurname + " " + tempScore);
+
+  // triming whitespaces
+  if (studentName !== "") {
+    console.log(`-> adding new student to myRegistry`);
+    myRegistry.addStudent(studentName, studentSurname, tempScore);
+
+    // DEBUG :
+    console.log("testing localStorage - adding to key 'myRegistry' the content of variable `myRegistry`");
+    saveItemInStorage("myRegistry", myRegistry);
+    readStorageItem("myRegistry");
+  } else {
+    console.error("--> inserted whitespace or empty string");
+    alert("Caution: insert a valid name");
+  }
+
+  const newLI = document.createElement("li");
+  // e.g. with just index 0, length is `1` . SOO next elem will be inserted in human postion `1`
+  const lengthRegistry = myRegistry.length;
+  newLI.innerHTML = `
+    <div class="regId">${lengthRegistry}</div>
+    <div class="regName">${studentName}</div>
+    <div class="regSurname">${studentSurname}</div>
+    <div class="regScores">...</div>
+  `
+
+  listStudentsUL.appendChild(newLI);
+
+
+
+  // Resetting input fields
+  document.querySelector("#studentName").value = "";
+  document.querySelector("#studentSurname").value = "";
+
+}
+
+
+
+
+
+
+// // need to parse object into a JSON string to enter in localStorage correctly
+// localStorage.setItem("myRegistry", JSON.stringify(myRegistry));
+
+
+// DEBUG :
+
+console.log("\n\nINIZIO DOM\n\n");
+
+// readStorageItem("myRegistry");
+
+// to prevent default behaviour of forms
+studentForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  // NOTE :
+  // - added this,
+  // - the form `action="#"`
+  // TODO : create, verify this type of function.
+
+  callRegister();
+})
+
+
+// to allow to ""import the old `myRegistry` from the memory of `localStorage`""
+window.onload = () => {
+  const myRegistry = loadRegisterFromLocalStorage();
+
+  console.log("Onload and from LocalStorage");
+  console.log(myRegistry);
+}
+
+// // BEFORE FIXING event.preventDefault:
+// // submit with focus on a field of the form
+// studentForm.addEventListener(click, (event) => {
+//   callRegister();
+// })
+
+// // ""submit"" with click on input `type="button"` of the form
+// submitStudent.addEventListener(click, (event) => {
+//   callRegister();
+// })
+
+console.log(listStudents);

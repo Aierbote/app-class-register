@@ -80,7 +80,7 @@
 
 			<!-- section form start -->
 			<section id="inputStudent">
-				<form id="studentForm">
+				<form id="studentForm" action="#">
 					<fieldset>
 						<legend>New Student</legend>
 
@@ -103,16 +103,20 @@
 							>
 							<input
 								type="text"
-								id="studentSurame"
+								id="studentSurname"
 								name="studentSurname"
 								placeholder="Rossi"
 								required
 							/>
 						</div>
 
-						<div id="submitStudent">
-							<!-- TODO : -->
-							<input type="submit" onclick="notImplemented()" value="Add" />
+						<div>
+							<input
+								id="submitStudent"
+								type="submit"
+								onclick="alert('DOM manipulation: adding new student')"
+								value="Add"
+							/>
 						</div>
 					</fieldset>
 				</form>
@@ -121,7 +125,14 @@
 
 			<!-- section form start -->
 			<section id="listStudents">
-				<ul></ul>
+				<ul>
+					<li id="liTableHead">
+						<div class="regId">Num</div>
+						<div class="regName">Name</div>
+						<div class="regSurname">Surname</div>
+						<div class="regScores">Scores</div>
+					</li>
+				</ul>
 			</section>
 			<!-- section form end -->
 		</main>

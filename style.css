@@ -124,10 +124,17 @@ label > abbr {
 }
 
 #listStudents > ul > li {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
+	/* display: flex; */
+	/* flex-direction: row; */
+	/* justify-content: space-evenly; */
 	background-color: var(--my-tr-default-color);
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+}
+
+#listStudents > ul > li > div {
+	display: flex;
+	justify-content: center;
 }
 
 #listStudents > ul > li:nth-child(odd) {

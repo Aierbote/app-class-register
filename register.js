@@ -162,11 +162,20 @@ function loadRegisterFromLocalStorage() {
 
       myRegistry.addStudent(stud_.name, stud_.surname, stud_.scores);
 
+      // // TODO : sort of saving it for later
+      // <div class="regScores">${stud_.scores}</div>
       newLI.innerHTML = `
         <div class="regId">${lengthRegistry}</div>
         <div class="regName">${stud_.name}</div>
         <div class="regSurname">${stud_.surname}</div>
-        <div class="regScores">${stud_.scores}</div>
+        <div class="regScores">
+          <button onclick="notImplemented()">show...</button>
+        </div>
+        <div class="regAction">
+          <button onclick="notImplemented()">Edit...</button>
+          <button onclick="notImplemented()">Add vote...</button>
+          <button onclick="notImplemented()">Delete...</button>
+        </div>
       `
 
       listStudentsUL.appendChild(newLI);
@@ -211,7 +220,14 @@ function callRegister() {
     <div class="regId">${lengthRegistry}</div>
     <div class="regName">${studentName}</div>
     <div class="regSurname">${studentSurname}</div>
-    <div class="regScores">...</div>
+    <div class="regScores">
+      <button onclick="notImplemented()">Show...</button>
+    </div>
+    <div class="regAction">
+      <button onclick="notImplemented()">Edit...</button>
+      <button onclick="notImplemented()">Add vote...</button>
+      <button onclick="notImplemented()">Delete...</button>
+    </div>
   `
 
   listStudentsUL.appendChild(newLI);

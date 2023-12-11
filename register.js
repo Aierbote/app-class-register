@@ -160,6 +160,10 @@ function loadRegisterFromLocalStorage() {
       // e.g. with just index 0, length is `1` . SOO next elem will be inserted in human postion `1`
       const lengthRegistry = myRegistry.length + 1;
 
+      // generate id for new list item
+      newLI.id = `liStudent${lengthRegistry}`;
+
+
       myRegistry.addStudent(stud_.name, stud_.surname, stud_.scores);
 
       // // TODO : sort of saving it for later
@@ -216,6 +220,10 @@ function callRegister() {
   const newLI = document.createElement("li");
   // e.g. with just index 0, length is `1` . SOO next elem will be inserted in human postion `1`
   const lengthRegistry = myRegistry.length + 1;
+
+  // generate id for new list item
+  newLI.id = `liStudent${lengthRegistry}`;
+
   newLI.innerHTML = `
     <div class="regId">${lengthRegistry}</div>
     <div class="regName">${studentName}</div>
